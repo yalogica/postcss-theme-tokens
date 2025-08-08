@@ -68,21 +68,26 @@ const plugin: PluginCreator<Options> = (opts = {}) => {
 
                             lines.push(`.${themeName} {`);
 
-                            if (themeConfig.colorScheme) {
-                                const VALID_SCHEMES = ['light', 'dark'];
+                            if (themeConfig.colorScheme && typeof themeConfig.colorScheme === 'string') {
+                                const VALID_COLOR_SCHEMES = ['light', 'dark'];
 
                                 const scheme = themeConfig.colorScheme.trim();
-                                const isValid = scheme
-                                    .split(/\s+/)
-                                    .every(part => VALID_SCHEMES.includes(part));
 
-                                if (isValid) {
-                                    lines.push(`  color-scheme: ${scheme};`);
+                                if (!scheme) {
+                                    warnings.push(`Empty colorScheme in theme "${themeName}"`);
                                 } else {
-                                    warnings.push(
-                                        `Invalid colorScheme "${scheme}" in theme "${themeName}". ` +
-                                        `Allowed: ${VALID_SCHEMES.join(', ')} (or combinations like "light dark")`
-                                    );
+                                    const isValid = scheme
+                                        .split(/\s+/)
+                                        .every(part => VALID_COLOR_SCHEMES.includes(part.toLowerCase() as any))
+
+                                    if (isValid) {
+                                        lines.push(`  color-scheme: ${scheme};`);
+                                    } else {
+                                        warnings.push(
+                                            `Invalid colorScheme "${scheme}" in theme "${themeName}". ` +
+                                            `Allowed: ${VALID_COLOR_SCHEMES.join(', ')} (or combinations like "light dark")`
+                                        )
+                                    }
                                 }
                             }
 
