@@ -1,8 +1,7 @@
 # postcss-theme-tokens
 
-PostCSS plugin to generate CSS variables from theme objects.
+Generate CSS variables from theme configs with `color-scheme` support.
 
 ## Install
-
 ```bash
-npm install postcss-theme-tokens -D
+npm install postcss-theme-tokens --save-dev

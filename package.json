@@ -1,24 +1,23 @@
 {
     "name": "postcss-theme-tokens",
     "version": "1.0.0",
-    "description": "PostCSS plugin to generate CSS variables from theme objects",
+    "description": "PostCSS plugin to generate CSS variables from theme configs with color formatting and color-scheme support",
     "keywords": [
         "postcss",
         "plugin",
         "postcss-plugin",
         "theme",
         "theming",
-        "css-variables"
+        "css-variables",
+        "design-tokens"
     ],
     "author": "Max Lawrence <mxlawr@gmail.com>",
     "license": "MIT",
-    "main": "lib/index.js",
-    "types": "lib/index.d.ts",
-    "files": [
-        "lib"
-    ],
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "scripts": {
-        "build": "tsc"
+        "build": "tsc",
+        "prepublishOnly": "npm run build"
     },
     "peerDependencies": {
         "postcss": ">=8"
@@ -30,5 +29,13 @@
         "@types/color": "^3.0.1",
         "@types/node": "^24.2.0",
         "typescript": "^5.1.6"
+    },
+    "homepage": "https://github.com/yalogica/postcss-theme-tokens#readme",
+    "bugs": {
+        "url": "https://github.com/yalogica/postcss-theme-tokens/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yalogica/postcss-theme-tokens.git"
     }
 }

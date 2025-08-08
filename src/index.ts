@@ -3,6 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import Color from 'color';
 
+const VALID_COLOR_SCHEMES = ['light', 'dark'] as const;
+
 interface ThemesConfig {
     themes: {
         [themeName: string]: {
@@ -69,8 +71,6 @@ const plugin: PluginCreator<Options> = (opts = {}) => {
                             lines.push(`.${themeName} {`);
 
                             if (themeConfig.colorScheme && typeof themeConfig.colorScheme === 'string') {
-                                const VALID_COLOR_SCHEMES = ['light', 'dark'];
-
                                 const scheme = themeConfig.colorScheme.trim();
 
                                 if (!scheme) {
@@ -78,10 +78,16 @@ const plugin: PluginCreator<Options> = (opts = {}) => {
                                 } else {
                                     const isValid = scheme
                                         .split(/\s+/)
-                                        .every(part => VALID_COLOR_SCHEMES.includes(part.toLowerCase() as any))
+                                        .every(part => VALID_COLOR_SCHEMES.includes(part.toLowerCase() as typeof VALID_COLOR_SCHEMES[number]))
 
                                     if (isValid) {
-                                        lines.push(`  color-scheme: ${scheme};`);
+                                        const normalizedScheme = scheme
+                                            .split(/\s+/)
+                                            .filter((_, i, arr) => arr.indexOf(_) === i)
+                                            .join(' ')
+                                            .toLowerCase();
+
+                                        lines.push(`  color-scheme: ${normalizedScheme};`);
                                     } else {
                                         warnings.push(
                                             `Invalid colorScheme "${scheme}" in theme "${themeName}". ` +
