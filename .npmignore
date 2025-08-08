@@ -1,0 +1,7 @@
+# .npmignore
+src/
+*.ts
+!*.d.ts
+tsconfig.json
+node_modules/
+npm-debug.log
