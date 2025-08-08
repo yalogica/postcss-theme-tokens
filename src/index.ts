@@ -101,7 +101,7 @@ const plugin: PluginCreator<Options> = (opts = {}) => {
                                 if (typeof value === 'string') {
                                     try {
                                         const color = Color(value);
-                                        const varName = `--${prefix ? prefix + '-' : ''}-${colorName}`;
+                                        const varName = `--${prefix ? prefix + '-' : ''}${colorName}`;
                                         let varValue: string;
 
                                         if (format === 'hsl') {
