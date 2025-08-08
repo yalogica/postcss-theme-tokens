@@ -1,6 +1,6 @@
 {
     "name": "postcss-theme-tokens",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "PostCSS plugin to generate CSS variables from theme configs with color formatting and color-scheme support",
     "keywords": [
         "postcss",
