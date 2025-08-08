@@ -88,6 +88,28 @@ export default {
 ```
 > ✅ Tip: Use consistent naming and always include `colorScheme` for proper dark/light mode integration with the browser.
 
+The source file can be TS too
+```TS
+export default {
+  themes: {
+    mytheme: {
+      colorScheme: "light dark",
+      colors: {
+        background: "#ffffff",
+        foreground: "#000000",
+        focus: "#006FEE",
+        overlay: "#000000",
+        content: {
+          DEFAULT: "#ffffff",
+          foreground: "#000"
+        },
+      }
+    }
+  }
+}
+```
+
+
 ### 3. Add the plugin directive to your CSS file:
 ```CSS
 @theme-tokens './src/theme.json';
